@@ -5,39 +5,38 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
+import Services from './components/Services';
 import Achievements from './components/Achievements';
 import Contact from './components/Contact';
+import Footer from './components/Footer';
 
 function App() {
   useEffect(() => {
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.12 });
-    reveals.forEach(r => {
-      r.style.opacity = '0';
-      r.style.transform = 'translateY(40px)';
-      r.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
-      observer.observe(r);
-    });
+    const sections = document.querySelectorAll('.section-wrap');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      },
+      { threshold: 0.1 }
+    );
+    sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div style={{ background: '#080810' }} className="text-gray-100 font-rajdhani">
+    <div className="font-rajdhani text-gray-100" style={{ background: '#080810' }}>
       <Aurora />
       <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Achievements />
-      <Contact />
+      <div className="section-wrap"><Hero /></div>
+      <div className="section-wrap"><About /></div>
+      <div className="section-wrap"><Skills /></div>
+      <div className="section-wrap"><Projects /></div>
+      <div className="section-wrap"><Services /></div>
+      <div className="section-wrap"><Achievements /></div>
+      <div className="section-wrap"><Contact /></div>
+      <Footer />
     </div>
   );
 }

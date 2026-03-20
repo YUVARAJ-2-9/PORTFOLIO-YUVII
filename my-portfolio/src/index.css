@@ -50,3 +50,19 @@ body { background: #080810; overflow-x: hidden; }
 section {
   background: transparent !important;
 }
+/* Section fade transition */
+.section-wrap {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.section-wrap.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Hero always visible */
+.section-wrap:first-child {
+  opacity: 1;
+  transform: translateY(0);
+}
