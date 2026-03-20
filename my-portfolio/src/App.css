@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --bg: #0a0a0f;
+  --bg2: #111118;
+  --card: #16161f;
+  --accent1: #7c3aed;
+  --accent2: #06b6d4;
+  --accent3: #f59e0b;
+  --text: #f1f1f1;
+  --muted: #888;
+  --grad: linear-gradient(135deg, #7c3aed, #06b6d4);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  overflow-x: hidden;
+}
+
+section {
+  padding: 80px 10%;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+}
+
+.section-line {
+  width: 60px;
+  height: 4px;
+  background: var(--grad);
+  border-radius: 2px;
+  margin-bottom: 48px;
+}

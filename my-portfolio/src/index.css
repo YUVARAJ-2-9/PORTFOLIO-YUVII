@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { scroll-behavior: smooth; }
+
+body { background: #080810; overflow-x: hidden; }
+
+@layer components {
+  .section-title {
+    @apply font-orbitron font-black text-4xl mb-3;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .section-line {
+    @apply w-16 h-1 rounded-full mb-12;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    box-shadow: 0 0 12px #a855f7, 0 0 24px #a855f744;
+  }
+  .nav-link {
+    @apply text-gray-500 no-underline font-orbitron font-bold text-xs tracking-widest transition-all duration-200;
+  }
+  .nav-link:hover {
+    color: #a855f7;
+    text-shadow: 0 0 10px #a855f7;
+  }
+  .btn-primary {
+    @apply px-8 py-3 rounded-lg font-orbitron font-bold text-xs tracking-widest text-white no-underline transition-all duration-300;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    box-shadow: 0 0 20px rgba(168,85,247,0.35);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 35px rgba(168,85,247,0.6);
+    transform: translateY(-2px);
+  }
+  .btn-outline {
+    @apply px-8 py-3 rounded-lg font-orbitron font-bold text-xs tracking-widest no-underline transition-all duration-300;
+    border: 1px solid #a855f7;
+    color: #a855f7;
+  }
+  .btn-outline:hover {
+    background: rgba(168,85,247,0.1);
+    box-shadow: 0 0 20px rgba(168,85,247,0.25);
+    transform: translateY(-2px);
+  }
+}
+section {
+  background: transparent !important;
+}
