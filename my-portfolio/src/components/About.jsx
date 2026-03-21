@@ -61,6 +61,7 @@ const About = () => (
           ))}
         </div>
 
+        {/* Stats */}
         <div className="flex gap-10">
           {[['2+','Projects Built'],['1','Hackathon Won'],['4','Technologies']].map(([num, label], i) => (
             <motion.div key={label}
@@ -76,62 +77,68 @@ const About = () => (
         </div>
       </motion.div>
 
-      {/* Right — Code block */}
+      {/* Right — Fun Facts */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
         viewport={{ once: true }}
-        whileHover={{ boxShadow: '0 0 40px rgba(168,85,247,0.15)' }}
-        className="rounded-2xl p-7 font-orbitron text-sm leading-loose"
-        style={{ background: 'rgba(168,85,247,0.05)', border: '1px solid rgba(168,85,247,0.18)' }}>
-        <p className="text-gray-600 text-xs mb-4 tracking-widest">// about_me.js</p>
-        <p><span className="text-purple-400">const</span> <span className="text-pink-400">yuvaraj</span> = {'{'}</p>
-        <div className="pl-5">
-          {[
-            ['name', '"Yuvaraj K"'],
-            ['age', '19', true],
-            ['college', '"KG College"'],
-            ['year', '"2nd Year CS"'],
-            ['passion', '"Building cool stuff"'],
-          ].map(([key, val, isNum], i) => (
-            <motion.p key={key}
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.4 + i * 0.08 }}
-              viewport={{ once: true }}>
-              <span className="text-yellow-300">{key}</span>
-              <span className="text-gray-500">: </span>
-              <span className={isNum ? 'text-orange-300' : 'text-green-400'}>{val}</span>
-              <span className="text-gray-600">,</span>
-            </motion.p>
-          ))}
-          <p><span className="text-yellow-300">hobbies</span><span className="text-gray-500">:</span> [</p>
-          <div className="pl-5">
-            {['"Coding"', '"Problem Solving"', '"Learning new tech"'].map((h, i) => (
-              <motion.p key={h}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.8 + i * 0.08 }}
-                viewport={{ once: true }}>
-                <span className="text-green-400">{h}</span><span className="text-gray-600">,</span>
-              </motion.p>
-            ))}
-          </div>
-          <p>]<span className="text-gray-600">,</span></p>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 1.1 }}
-            viewport={{ once: true }}>
-            <span className="text-yellow-300">available</span><span className="text-gray-500">: </span>
-            <span className="text-purple-400">true</span>
-          </motion.p>
+        className="space-y-4">
+
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-6">
+          <span style={{ fontSize: '22px' }}>🎯</span>
+          <h3 className="font-orbitron font-bold text-sm text-purple-300 tracking-widest">
+            FUN FACTS ABOUT ME
+          </h3>
         </div>
-        <p>{'}'}</p>
-        <p className="mt-4 text-gray-700 text-xs">
-          <span className="text-purple-500">{'>'}</span> Always learning, always building 💡
-        </p>
+
+        {[
+          {
+            emoji: '🏏',
+            fact: 'Cricket is life da! Batting, bowling, fielding — full all-rounder. On the field or on the couch watching — cricket mode always ON! 🔥',
+            color: 'rgba(168,85,247,0.08)',
+            border: 'rgba(168,85,247,0.2)'
+          },
+          {
+            emoji: '🎵',
+            fact: 'No genre boundaries — Tamil, English, Hip-hop, Lo-fi... if the vibe is right, it\'s on repeat. Music is my coding fuel! 🎧',
+            color: 'rgba(236,72,153,0.06)',
+            border: 'rgba(236,72,153,0.2)'
+          },
+          {
+            emoji: '🚀',
+            fact: 'Big dreamer. Started from zero, learning every single day. One day — building something used by millions. Watch this space! 💫',
+            color: 'rgba(168,85,247,0.08)',
+            border: 'rgba(168,85,247,0.2)'
+          },
+          {
+            emoji: '📚',
+            fact: 'Love learning new things — tech, life, people. Every day is a new update to install. Currently learning: how to be the best version of myself! 🌱',
+            color: 'rgba(236,72,153,0.06)',
+            border: 'rgba(236,72,153,0.2)'
+          },
+          {
+            emoji: '🐐',
+            fact: '"I\'m not here to prove anyone how good I am." — MS Dhoni. This quote hits different every single time. Just do your thing! 🙌',
+            color: 'rgba(168,85,247,0.08)',
+            border: 'rgba(168,85,247,0.2)'
+          },
+        ].map(({ emoji, fact, color, border }, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.02, x: 6 }}
+            className="flex items-start gap-4 p-4 rounded-xl cursor-default"
+            style={{ background: color, border: `1px solid ${border}` }}>
+            <span style={{ fontSize: '20px', flexShrink: 0, marginTop: '2px' }}>{emoji}</span>
+            <p className="text-gray-400 text-sm leading-relaxed">{fact}</p>
+          </motion.div>
+        ))}
+
       </motion.div>
     </div>
   </section>

@@ -10,6 +10,7 @@ import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
+
 function App() {
   useEffect(() => {
     const sections = document.querySelectorAll('.section-wrap');
@@ -36,6 +37,9 @@ function App() {
       <div className="section-wrap"><Services /></div>
       <div className="section-wrap"><Achievements /></div>
       <div className="section-wrap"><Contact /></div>
+     
+      
+
       <Footer />
     </div>
   );

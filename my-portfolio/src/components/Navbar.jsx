@@ -12,12 +12,13 @@ const Navbar = () => {
     <nav className={`fixed top-0 w-full z-[1000] px-[10%] py-4 flex justify-between items-center transition-all duration-300
       ${scrolled ? 'backdrop-blur-md border-b border-purple-500/20' : 'bg-transparent'}`}
       style={{ background: scrolled ? 'rgba(8,8,16,0.95)' : 'transparent' }}>
-      <span className="font-orbitron font-black text-lg tracking-widest"
-        style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-        YK.DEV
-      </span>
+     <span className="font-orbitron font-black text-lg tracking-widest">
+  <span style={{ color: '#a855f7' }}>&lt;</span>
+  <span style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}> Yuvaraj </span>
+  <span style={{ color: '#ec4899' }}>/&gt;</span>
+</span>
       <div className="flex gap-8">
-        {['about','skills','projects','achievements','contact','Services'].map(link => (
+        {['about','skills','projects','achievements','contact'].map(link => (
           <a key={link} href={`#${link}`}
             className="font-orbitron font-bold text-xs tracking-widest no-underline capitalize transition-all duration-200"
             style={{ color: '#555' }}

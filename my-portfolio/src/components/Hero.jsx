@@ -61,15 +61,28 @@ const Hero = () => {
           <span className="text-purple-400 text-sm font-rajdhani tracking-[3px] uppercase">Hey there, I'm</span>
         </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="font-rajdhani font-black leading-none mb-4"
-          style={{ fontSize: 'clamp(3.5rem, 7vw, 6.5rem)', letterSpacing: '-2px' }}>
-          <span className="text-white">Yuva</span>
-          <span style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>raj K</span>
-        </motion.h1>
+       <motion.h1
+  initial={{ opacity: 0, y: 60, scale: 0.8 }}
+  animate={{ opacity: 1, y: 0, scale: 1 }}
+  transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+  className="font-rajdhani font-black leading-none mb-4"
+  style={{ fontSize: 'clamp(3.5rem, 7vw, 6.5rem)', letterSpacing: '-2px' }}>
+  <motion.span
+    className="text-white inline-block"
+    initial={{ opacity: 0, x: -30 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.6, delay: 0.4 }}>
+    Yuva
+  </motion.span>
+  <motion.span
+    initial={{ opacity: 0, x: 30 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.6, delay: 0.5 }}
+    style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
+    className="inline-block">
+    raj K
+  </motion.span>
+</motion.h1>
 
         {/* Typing role */}
         <motion.div
@@ -106,33 +119,64 @@ const Hero = () => {
             View Projects
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="mailto:yuvarajyuvaraj1417@gmail.com"
-            className="flex items-center gap-2 px-7 py-3 rounded-full font-rajdhani font-bold text-base no-underline transition-all duration-300 text-gray-300"
-            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(168,85,247,0.25)' }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(168,85,247,0.6)'; e.currentTarget.style.background = 'rgba(168,85,247,0.08)'; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(168,85,247,0.25)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; }}>
-            Contact Me
-          </a>
+          {/* Freelance Button */}
+<motion.a
+  href="#contact"
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.97 }}
+  className="flex items-center gap-2 px-7 py-3 rounded-full font-rajdhani font-bold text-base no-underline transition-all duration-300 relative overflow-hidden"
+  style={{ border: '1px solid rgba(168,85,247,0.4)', color: '#f1f1f1' }}
+  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(168,85,247,0.1)'; e.currentTarget.style.borderColor = 'rgba(168,85,247,0.7)'; }}
+  onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(168,85,247,0.4)'; }}>
+
+  {/* Pulsing dot */}
+  <span className="relative flex h-2 w-2">
+    <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+      style={{ background: '#a855f7' }} />
+    <span className="relative inline-flex rounded-full h-2 w-2"
+      style={{ background: '#ec4899' }} />
+  </span>
+
+  Hire Me for Freelance
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="2.5">
+    <path d="M7 17L17 7M17 7H7M17 7v10"/>
+  </svg>
+</motion.a>
+          
           
         </motion.div>
 
         {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex gap-10">
-          {[['2+','Projects'],['1','Hackathon Win'],['4','Technologies']].map(([num, label], i) => (
-            <motion.div key={label}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.9 + i * 0.1 }}>
-              <p className="font-rajdhani font-black text-2xl"
-                style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{num}</p>
-              <p className="text-gray-600 text-xs tracking-wider uppercase">{label}</p>
-            </motion.div>
-          ))}
-        </motion.div>
+    {/* Stats + Quote */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.8 }}>
+
+  {/* Stats */}
+
+
+  {/* MSD Quote */}
+  <motion.div
+    initial={{ opacity: 0, x: -20 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.7, delay: 1.1 }}
+    className="max-w-md"
+    style={{
+      borderLeft: '2px solid #a855f7',
+      paddingLeft: '16px',
+    }}>
+    <p className="font-rajdhani text-sm leading-relaxed"
+      style={{ color: 'rgba(168,85,247,0.7)' }}>
+      "I'm not here to prove anyone how good I am"
+    </p>
+    <p className="text-xs mt-1 font-orbitron tracking-widest"
+      style={{ color: 'rgba(236,72,153,0.5)' }}>
+      — MS Dhoni 🐐
+    </p>
+  </motion.div>
+
+</motion.div>
       </div>
 
       {/* RIGHT — Terminal */}
@@ -177,7 +221,7 @@ const Hero = () => {
               ))}
               <p><span className="text-yellow-300">skills</span><span className="text-gray-500">:</span> [</p>
               <div className="pl-5">
-                {['"React"', '"Python"', '"Java"'].map((s, i) => (
+                {['Java', 'React', 'JavaScript'].map((s, i) => (
                   <motion.p key={s}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}

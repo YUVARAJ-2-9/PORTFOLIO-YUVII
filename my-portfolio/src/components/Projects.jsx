@@ -1,111 +1,126 @@
 import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 
 const projects = [
   {
     title: 'eCampus Website',
-    desc: 'A full-featured campus management web app with student dashboard, notices board, and academic information portal.',
-    longDesc: 'Built with React.js — features include responsive design, dynamic content rendering, and clean UI/UX.',
-    tech: ['React', 'HTML', 'CSS', 'JavaScript'],
-    emoji: '🏫', github: 'https://github.com/YUVARAJ-2-9', live: null, status: 'Completed'
+    desc: 'Full-featured campus management app with student dashboard, notices board, and academic portal.',
+    tech: ['MERN stack'],
+    emoji: '🏫',
+    github: 'https://github.com/YUVARAJ-2-9',
+    status: 'Completed',
+    color: '#a855f7'
   },
   {
     title: 'Medicine Reminder',
-    desc: 'Smart medicine tracker with notification system to help users manage their daily medication schedules.',
-    longDesc: 'Python-based app with scheduling logic, alert system, and clean interface focused on accessibility.',
-    tech: ['Python', 'HTML', 'CSS'],
-    emoji: '💊', github: 'https://github.com/YUVARAJ-2-9', live: null, status: 'Completed'
+    desc: 'Smart medicine tracker with notification system to manage daily medication schedules.',
+    tech: ['MERN Stack'],
+    emoji: '💊',
+    github: 'https://github.com/YUVARAJ-2-9',
+    status: 'Completed',
+    color: '#ec4899'
   },
   {
     title: 'To-Do List App',
-    desc: 'Hackathon winning Python app — built under time pressure with full CRUD operations and clean task management UI.',
-    longDesc: 'Won ₹5,000 prize at KG College Python Hackathon. Features task creation, tracking, and persistent storage.',
+    desc: 'Hackathon winning Python app — built under pressure with full CRUD and task management.',
     tech: ['Python'],
-    emoji: '✅', github: 'https://github.com/YUVARAJ-2-9', live: null, status: '🏆 Hackathon Winner'
+    emoji: '✅',
+    github: 'https://github.com/YUVARAJ-2-9',
+    status: '🏆 Hackathon Winner',
+    color: '#a855f7'
+  },
+  {
+    title: 'Coming Soon',
+    desc: 'Next project loading... Something exciting is being built! Stay tuned. 🚀',
+    tech: ['React', 'Node.js'],
+    emoji: '⚡',
+    github: 'https://github.com/YUVARAJ-2-9',
+    status: 'In Progress',
+    color: '#ec4899'
   },
 ];
 
-const TiltCard = ({ project, index }) => {
-  const card = useRef(null);
-  const { title, desc, longDesc, tech, emoji, github, live, status } = project;
+// Duplicate for infinite loop
+const allProjects = [...projects, ...projects, ...projects];
 
-  const handleMove = (e) => {
-    const rect = card.current.getBoundingClientRect();
-    const rotX = ((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * -6;
-    const rotY = ((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 6;
-    card.current.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
-  };
+const ProjectCard = ({ project }) => {
+  const { title, desc, tech, emoji, github, status, color } = project;
 
   return (
     <motion.div
-      ref={card}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
-      viewport={{ once: true }}
-      onMouseMove={handleMove}
-      onMouseLeave={() => { card.current.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale(1)'; card.current.style.boxShadow = 'none'; }}
-      onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 40px rgba(168,85,247,0.2)'}
-      className="rounded-2xl p-6 flex flex-col transition-all duration-150"
-      style={{ background: '#0f0f1a', border: '1px solid rgba(168,85,247,0.15)' }}>
+      whileHover={{ y: -8, boxShadow: `0 20px 40px ${color}30`, borderColor: `${color}55` }}
+      className="rounded-2xl p-6 flex flex-col flex-shrink-0"
+      style={{
+        width: '300px',
+        background: '#0f0f1a',
+        border: '1px solid rgba(168,85,247,0.15)',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
 
+      {/* Top glow line */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: '2px',
+        background: `linear-gradient(90deg, transparent, ${color}, transparent)`
+      }} />
+
+      {/* Header */}
       <div className="flex items-start justify-between mb-4">
-        <div className="text-3xl w-12 h-12 rounded-xl flex items-center justify-center"
-          style={{ background: 'rgba(168,85,247,0.1)', border: '1px solid rgba(168,85,247,0.2)' }}>
+        <motion.div
+          whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+          transition={{ duration: 0.4 }}
+          className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
+          style={{ background: `${color}18`, border: `1px solid ${color}33` }}>
           {emoji}
-        </div>
+        </motion.div>
         <span className="text-xs font-orbitron px-3 py-1 rounded-full"
-          style={{ background: 'rgba(168,85,247,0.1)', border: '1px solid rgba(168,85,247,0.2)', color: '#c084fc' }}>
+          style={{ background: `${color}18`, border: `1px solid ${color}33`, color }}>
           {status}
         </span>
       </div>
 
-      <h3 className="font-orbitron font-bold text-base mb-2 text-purple-300">{title}</h3>
-      <p className="text-gray-500 text-sm leading-relaxed mb-3">{desc}</p>
-      <p className="text-gray-600 text-xs leading-relaxed mb-5">{longDesc}</p>
+      {/* Content */}
+      <h3 className="font-orbitron font-bold text-sm mb-2" style={{ color }}>
+        {title}
+      </h3>
+      <p className="text-gray-500 text-xs leading-relaxed mb-4 flex-1">{desc}</p>
 
-      <div className="flex flex-wrap gap-2 mb-6">
+      {/* Tech tags */}
+      <div className="flex flex-wrap gap-2 mb-4">
         {tech.map(t => (
-          <span key={t} className="px-3 py-1 text-xs font-orbitron rounded-full text-purple-300"
-            style={{ background: 'rgba(168,85,247,0.08)', border: '1px solid rgba(168,85,247,0.2)' }}>{t}</span>
+          <span key={t} className="px-2 py-1 text-xs font-orbitron rounded-full"
+            style={{ background: `${color}12`, border: `1px solid ${color}30`, color }}>
+            {t}
+          </span>
         ))}
       </div>
 
-      <div className="flex gap-3 mt-auto">
-        <a href={github} target="_blank" rel="noreferrer"
-          className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-orbitron no-underline transition-all duration-200 text-gray-300"
-          style={{ border: '1px solid rgba(168,85,247,0.25)' }}
-          onMouseEnter={e => { e.currentTarget.style.background = 'rgba(168,85,247,0.1)'; e.currentTarget.style.borderColor = 'rgba(168,85,247,0.5)'; }}
-          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(168,85,247,0.25)'; }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#a855f7">
-            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-          </svg>
-          GitHub
-        </a>
-        {live ? (
-          <a href={live} target="_blank" rel="noreferrer"
-            className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-orbitron no-underline text-white"
-            style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}>
-            Live ↗
-          </a>
-        ) : (
-          <span className="flex items-center px-4 py-2 rounded-full text-xs font-orbitron text-gray-600"
-            style={{ border: '1px solid rgba(255,255,255,0.05)' }}>
-            Coming Soon
-          </span>
-        )}
-      </div>
+      {/* GitHub */}
+      <motion.a
+        href={github} target="_blank" rel="noreferrer"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.97 }}
+        className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-orbitron no-underline text-gray-300 w-fit"
+        style={{ border: '1px solid rgba(168,85,247,0.25)' }}>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill={color}>
+          <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+        </svg>
+        GitHub
+      </motion.a>
     </motion.div>
   );
 };
 
 const Projects = () => (
-  <section id="projects" className="min-h-screen flex flex-col justify-center px-[10%] py-24 relative z-10">
+  <section id="projects" className="min-h-screen flex flex-col justify-center py-24 relative z-10">
+
+    {/* Header */}
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      viewport={{ once: true }}>
+      viewport={{ once: true }}
+      className="px-[10%]">
       <div className="flex items-center gap-3 mb-2">
         <div className="h-px w-10" style={{ background: 'linear-gradient(90deg, transparent, #a855f7)' }} />
         <span className="text-purple-400 text-sm font-rajdhani tracking-[3px] uppercase">What I built</span>
@@ -113,9 +128,51 @@ const Projects = () => (
       <p className="section-title">Projects</p>
       <div className="section-line" />
     </motion.div>
-    <div className="grid grid-cols-3 gap-6">
-      {projects.map((p, i) => <TiltCard key={p.title} project={p} index={i} />)}
+
+    {/* Infinite scroll belt */}
+    <div style={{ overflow: 'hidden', position: 'relative' }}>
+
+      {/* Left fade */}
+      <div style={{
+        position: 'absolute', left: 0, top: 0, bottom: 0, width: '120px', zIndex: 2,
+        background: 'linear-gradient(90deg, #080810, transparent)',
+        pointerEvents: 'none'
+      }} />
+
+      {/* Right fade */}
+      <div style={{
+        position: 'absolute', right: 0, top: 0, bottom: 0, width: '120px', zIndex: 2,
+        background: 'linear-gradient(270deg, #080810, transparent)',
+        pointerEvents: 'none'
+      }} />
+
+      {/* Moving track */}
+      <motion.div
+        animate={{ x: ['0%', '-33.33%'] }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: 'linear',
+          repeatType: 'loop'
+        }}
+        className="flex gap-6 py-4"
+        style={{ width: 'max-content', paddingLeft: '24px' }}>
+        {allProjects.map((p, i) => (
+          <ProjectCard key={i} project={p} />
+        ))}
+      </motion.div>
     </div>
+
+    {/* Bottom note */}
+    <motion.p
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="text-center text-gray-700 text-xs font-orbitron tracking-widest mt-8 px-[10%]">
+      * More projects coming soon — stay tuned! 🚀
+    </motion.p>
+
   </section>
 );
 
