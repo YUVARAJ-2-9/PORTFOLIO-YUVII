@@ -30,15 +30,14 @@ const Hero = () => {
   }, [displayed, typing, roleIndex]);
 
   return (
-    <section id="hero" className="min-h-screen flex items-center px-[10%] relative z-10 gap-16 pt-20">
-
+    <section id="hero" className="min-h-screen flex items-center px-[6%] md:px-[10%] relative z-10 pt-20 flex-col md:flex-row gap-10 md:gap-16">
       <div className="absolute top-[-100px] right-[-50px] w-[600px] h-[600px] rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.12), transparent 70%)' }} />
       <div className="absolute bottom-[-50px] left-[-50px] w-[400px] h-[400px] rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(236,72,153,0.08), transparent 70%)' }} />
 
       {/* LEFT */}
-      <div className="flex-1 max-w-xl">
+    <div className="flex-1 max-w-xl w-full">
 
         {/* Badge */}
         <motion.div

@@ -66,3 +66,14 @@ section {
   opacity: 1;
   transform: translateY(0);
 }
+/* Mobile responsive */
+@media (max-width: 768px) {
+  section {
+    padding-left: 6% !important;
+    padding-right: 6% !important;
+  }
+
+  .section-title {
+    font-size: 1.8rem !important;
+  }
+}
