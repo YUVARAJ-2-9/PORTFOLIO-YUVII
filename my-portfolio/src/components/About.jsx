@@ -78,68 +78,90 @@ const About = () => (
       </motion.div>
 
       {/* Right — Fun Facts */}
-      <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
-        viewport={{ once: true }}
-        className="space-y-4">
+<motion.div
+  initial={{ opacity: 0, x: 50 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.8, delay: 0.3 }}
+  viewport={{ once: true }}
+  className="space-y-4">
 
-        {/* Header */}
-        <div className="flex items-center gap-3 mb-6">
-          <span style={{ fontSize: '22px' }}>🎯</span>
-          <h3 className="font-orbitron font-bold text-sm text-purple-300 tracking-widest">
-            FUN FACTS ABOUT ME
-          </h3>
-        </div>
+  <div className="flex items-center gap-3 mb-8">
+    <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, rgba(168,85,247,0.5), transparent)' }} />
+    <span className="font-orbitron text-xs text-purple-400 tracking-widest">FUN FACTS</span>
+    <div className="h-px flex-1" style={{ background: 'linear-gradient(270deg, rgba(168,85,247,0.5), transparent)' }} />
+  </div>
 
-        {[
-          {
-            emoji: '🏏',
-            fact: 'Cricket is life da! Batting, bowling, fielding — full all-rounder. On the field or on the couch watching — cricket mode always ON! 🔥',
-            color: 'rgba(168,85,247,0.08)',
-            border: 'rgba(168,85,247,0.2)'
-          },
-          {
-            emoji: '🎵',
-            fact: 'No genre boundaries — Tamil, English, Hip-hop, Lo-fi... if the vibe is right, it\'s on repeat. Music is my coding fuel! 🎧',
-            color: 'rgba(236,72,153,0.06)',
-            border: 'rgba(236,72,153,0.2)'
-          },
-          {
-            emoji: '🚀',
-            fact: 'Big dreamer. Started from zero, learning every single day. One day — building something used by millions. Watch this space! 💫',
-            color: 'rgba(168,85,247,0.08)',
-            border: 'rgba(168,85,247,0.2)'
-          },
-          {
-            emoji: '📚',
-            fact: 'Love learning new things — tech, life, people. Every day is a new update to install. Currently learning: how to be the best version of myself! 🌱',
-            color: 'rgba(236,72,153,0.06)',
-            border: 'rgba(236,72,153,0.2)'
-          },
-          {
-            emoji: '🐐',
-            fact: '"I\'m not here to prove anyone how good I am." — MS Dhoni. This quote hits different every single time. Just do your thing! 🙌',
-            color: 'rgba(168,85,247,0.08)',
-            border: 'rgba(168,85,247,0.2)'
-          },
-        ].map(({ emoji, fact, color, border }, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.02, x: 6 }}
-            className="flex items-start gap-4 p-4 rounded-xl cursor-default"
-            style={{ background: color, border: `1px solid ${border}` }}>
-            <span style={{ fontSize: '20px', flexShrink: 0, marginTop: '2px' }}>{emoji}</span>
-            <p className="text-gray-400 text-sm leading-relaxed">{fact}</p>
-          </motion.div>
-        ))}
+  {[
+    {
+      number: '01',
+      emoji: '🏏',
+      title: 'Cricket Addict',
+      fact: 'Batting, bowling, watching — full all-rounder. Cricket mode always ON!',
+    },
+    {
+      number: '02',
+      emoji: '🎵',
+      title: 'Music Lover',
+      fact: 'Tamil, English, Hip-hop, Lo-fi — no boundaries. Music is my coding fuel!',
+    },
+    {
+      number: '03',
+      emoji: '🐐',
+      title: 'MSD Fan',
+      fact: '"Not here to prove anyone how good I am." Daily motivation fr fr!',
+    },
+  ].map(({ number, emoji, title, fact }, i) => (
+    <motion.div
+      key={number}
+      initial={{ opacity: 0, x: 40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, delay: 0.3 + i * 0.12 }}
+      viewport={{ once: true }}
+      whileHover={{ x: 6 }}
+      className="flex items-start gap-5 p-5 rounded-2xl cursor-default group"
+      style={{ background: 'rgba(168,85,247,0.04)', border: '1px solid rgba(168,85,247,0.1)', transition: 'border-color 0.3s' }}
+      onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(168,85,247,0.3)'}
+      onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(168,85,247,0.1)'}>
 
-      </motion.div>
+      {/* Number */}
+      <span className="font-orbitron font-black text-xs flex-shrink-0 mt-1"
+        style={{ color: 'rgba(168,85,247,0.3)' }}>
+        {number}
+      </span>
+
+      {/* Emoji */}
+      <motion.span
+        whileHover={{ rotate: [0, -10, 10, 0], scale: 1.2 }}
+        transition={{ duration: 0.4 }}
+        style={{ fontSize: '22px', flexShrink: 0 }}>
+        {emoji}
+      </motion.span>
+
+      {/* Content */}
+      <div>
+        <p className="font-orbitron font-bold text-xs text-white mb-1 tracking-wider">{title}</p>
+        <p className="text-gray-500 text-xs leading-relaxed">{fact}</p>
+      </div>
+    </motion.div>
+  ))}
+
+  {/* Bottom quote */}
+  <motion.div
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ duration: 0.6, delay: 0.7 }}
+    viewport={{ once: true }}
+    className="pt-4 text-center">
+    <p className="text-xs font-orbitron tracking-widest"
+      style={{ color: 'rgba(168,85,247,0.3)' }}>
+      🚀 BIG DREAMER. ZERO LIMITS.
+    </p>
+  </motion.div>
+
+</motion.div>
+      
+
+    
     </div>
   </section>
 );
