@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   return (
-    <div className="font-rajdhani text-gray-100" style={{ background: '#080810' }}>
+<div className="font-rajdhani text-gray-100" style={{ background: '#030712' }}>
       <Aurora />
       <Navbar />
       <div className="section-wrap"><Hero /></div>
