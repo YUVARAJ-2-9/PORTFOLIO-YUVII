@@ -101,7 +101,7 @@ const Hero = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.5 }}
           className="text-gray-500 text-base leading-relaxed mb-10 max-w-md">
-          2nd year CS student at KG College, Coimbatore — turning ideas into
+          Final year CS student at KG College, Coimbatore — turning ideas into
           real web experiences. Passionate about clean code & great UI. 🚀
         </motion.p>
 
